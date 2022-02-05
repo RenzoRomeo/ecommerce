@@ -12,7 +12,7 @@ const Searchbar = () => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log(query);
-  }
+  };
 
   return (
     <Stack direction="row">

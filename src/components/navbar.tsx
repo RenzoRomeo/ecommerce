@@ -3,8 +3,21 @@ import { Box, Stack, Text } from '@chakra-ui/react';
 import Searchbar from './searchbar';
 
 const Navbar = () => (
-  <Box w="100%" h="fit-content" bg="blue">
-    <Stack direction="row" h="full" align="center" px="20vw" py={5}>
+  <Box boxSize="fit-content">
+    <Stack
+      w="full"
+      h="fit-content"
+      backdropFilter="auto"
+      backdropBlur="5px"
+      bg="blackAlpha.800"
+      position="fixed"
+      top={0}
+      zIndex={1}
+      direction={{ base: 'column', md: 'row' }}
+      align="center"
+      justifyContent="space-evenly"
+      py={5}
+    >
       <Link href="/" passHref>
         <Box cursor="pointer" p={2}>
           <Text fontSize={25}>ECOMMERCE</Text>

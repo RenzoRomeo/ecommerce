@@ -15,7 +15,7 @@ const ProductList = () => {
   }, []);
 
   return (
-    <Box size="fit-content" bg="green" mx="20vw">
+    <Box size="fit-content" mx="20vw" my="20vh">
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={5} p={5}>
         {products.map((product) => (
           <Product key={product.title} product={product} />
