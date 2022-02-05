@@ -41,7 +41,16 @@ const Product = (props: Props) => {
             {product.title}
           </Box>
 
-          <Box>{product.price}</Box>
+          <Box
+            p={2}
+            bg="blackAlpha.200"
+            fontSize={20}
+            fontWeight="bold"
+            boxSize="fit-content"
+            borderRadius={10}
+          >
+            ${new Intl.NumberFormat('es-ES').format(product.price)}
+          </Box>
         </Box>
       </HoverBox>
     </Link>
