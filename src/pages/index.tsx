@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import Navbar from "./components/navbar";
-import ProductList from "./components/product-list";
+import Navbar from "../components/navbar";
+import ProductList from "../components/product-list";
 
 const Home: NextPage = () => {
   return (
