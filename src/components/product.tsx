@@ -1,10 +1,10 @@
-import { Box, Badge } from "@chakra-ui/react";
-import Link from "next/link";
-import { Img as Image } from "@chakra-ui/react";
+import { Box, Badge } from '@chakra-ui/react';
+import Link from 'next/link';
+import { Img as Image } from '@chakra-ui/react';
 
-import HoverBox from "./hover-box";
+import HoverBox from './hover-box';
 
-import type { ProductType } from "../products";
+import type { ProductType } from '../products';
 
 interface Props {
   product: ProductType;
@@ -14,7 +14,7 @@ const Product = (props: Props) => {
   const { product } = props;
 
   return (
-    <Link href={`product/${product.slug}` || "/"} passHref>
+    <Link href={`product/${product.slug}` || '/'} passHref>
       <HoverBox
         cursor="pointer"
         maxW="sm"

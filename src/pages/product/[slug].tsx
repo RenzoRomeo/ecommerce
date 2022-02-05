@@ -1,8 +1,10 @@
-import { NextPage } from "next";
-import { Box } from "@chakra-ui/react";
+import { NextPage } from 'next';
+import { Box } from '@chakra-ui/react';
 
-import type { ProductType } from "../../products";
-import type { GetServerSidePropsContext } from "next";
+import Layout from '../../components/layout';
+
+import type { ProductType } from '../../products';
+import type { GetServerSidePropsContext } from 'next';
 
 interface Props {
   product: ProductType;
@@ -15,7 +17,11 @@ interface Params extends GetServerSidePropsContext {
 const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
   const { product } = props;
 
-  return <Box>{product.title}</Box>;
+  return (
+    <Layout title={product.title}>
+      <Box>{product.title}</Box>
+    </Layout>
+  );
 };
 
 export default ProductPage;
