@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react';
 import Layout from '../../components/layout';
 
 import type { ProductType } from '../../products';
+import { getProduct } from '../api/product/[slug]';
 import type { GetServerSidePropsContext } from 'next';
 
 interface Props {
@@ -28,10 +29,7 @@ export default ProductPage;
 
 export const getServerSideProps = async (params: Params) => {
   const { slug } = params.query;
-
-  const product: ProductType = await fetch(
-    `http://localhost:3000/api/product/${slug}`
-  ).then((res) => res.json());
+  const product: ProductType = getProduct(slug);
 
   return {
     props: {

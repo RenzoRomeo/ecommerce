@@ -9,7 +9,7 @@ const ProductList = () => {
   const [products, setProducts] = useState<Array<ProductType>>([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/products')
+    fetch('api/products')
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
