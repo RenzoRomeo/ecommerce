@@ -15,7 +15,7 @@ import type { ProductType } from '../../products';
 import { getProduct } from '../../products';
 import type { GetServerSidePropsContext } from 'next';
 
-import { useStore, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { actionAddToCart } from '../../actions/cart';
 import { useState } from 'react';
 
@@ -30,12 +30,10 @@ interface Params extends GetServerSidePropsContext {
 const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
   const [quantity, setQuantity] = useState<number>(1);
   const dispatch = useDispatch();
-  const store = useStore();
   const { product } = props;
 
   const handleAddToCart = () => {
     if (product?.slug) dispatch(actionAddToCart(product.slug, quantity));
-    console.log(store.getState().cart);
   };
 
   const handleRemoveQuantity = () => {

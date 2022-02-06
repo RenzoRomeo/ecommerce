@@ -1,4 +1,5 @@
-import { Box, Text } from '@chakra-ui/react';
+import Link from 'next/link';
+import { Text, Stack, Img as Image, LinkBox } from '@chakra-ui/react';
 import { ProductType } from '../products';
 
 interface Props {
@@ -9,9 +10,24 @@ const SearchbarItem = (props: Props) => {
   const { product } = props;
 
   return (
-    <Box boxSize="fit-content">
-      <Text noOfLines={1}>{product.title}</Text>
-    </Box>
+    <Link href={`/product/${product.slug}`} passHref>
+      <LinkBox>
+        <Stack
+          align="center"
+          boxSize="fit-content"
+          direction="row"
+          p={5}
+          spacing={5}
+          bg="whiteAlpha.300"
+          borderRadius="10px"
+          w="100%"
+          cursor="pointer"
+        >
+          <Image src={product.image} alt={product.title} w="3vw" />
+          <Text fontSize="1.2rem">{product.title}</Text>
+        </Stack>
+      </LinkBox>
+    </Link>
   );
 };
 

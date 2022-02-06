@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { useStore } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import { Box, Stack, Text, IconButton } from '@chakra-ui/react';
 import { BsFillCartFill } from 'react-icons/bs';
 
@@ -10,9 +10,10 @@ import { ProductPair } from '../reducers/cart';
 const Navbar = () => {
   const [totalQuantity, setTotalQuantity] = useState<number>(0);
   const store = useStore();
+  const cartState = useSelector((state: any) => state.cart);
 
   const setQuantity = useCallback(() => {
-    const pairs: Array<ProductPair> = store.getState().cart?.productPairs;
+    const pairs: Array<ProductPair> = cartState.productPairs;
     if (pairs) {
       const sum = pairs.reduce(
         (partial: number, curr: ProductPair) => partial + curr.quantity,
@@ -20,7 +21,7 @@ const Navbar = () => {
       );
       setTotalQuantity(sum);
     }
-  }, [store]);
+  }, [cartState]);
 
   useEffect(() => {
     let isMounted = true;
