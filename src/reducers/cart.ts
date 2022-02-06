@@ -1,8 +1,8 @@
-import { actions } from './actions';
-import type { ActionType } from './actions';
+import { actions } from '../actions/cart';
+import type { ActionType } from '../actions/cart';
 import type { Reducer } from 'redux';
 
-import type { ProductType } from './products';
+import type { ProductType } from '../products';
 
 export type ProductPair = {
   slug: string;
@@ -23,6 +23,7 @@ const cartReducer: Reducer<StateType | undefined, ActionType> = (
   action: ActionType
 ): StateType | undefined => {
   const { type } = action;
+
   const pairs = state.productPairs.slice();
 
   switch (type) {
@@ -53,6 +54,9 @@ const cartReducer: Reducer<StateType | undefined, ActionType> = (
           return { productPairs: pairs };
         }
       }
+      return state;
+
+    default:
       return state;
   }
 };

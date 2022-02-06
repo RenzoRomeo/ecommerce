@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { Box, Text, Stack, Img as Image, IconButton } from '@chakra-ui/react';
 import { MinusIcon } from '@chakra-ui/icons';
-import { actionRemoveFromCart } from '../actions';
+import { actionRemoveFromCart } from '../actions/cart';
 
-import type { FullProductPair } from '../reducers';
+import type { FullProductPair } from '../reducers/cart';
 
 interface Props {
   pair: FullProductPair;

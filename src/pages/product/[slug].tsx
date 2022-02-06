@@ -16,7 +16,7 @@ import { getProduct } from '../api/product/[slug]';
 import type { GetServerSidePropsContext } from 'next';
 
 import { useStore, useDispatch } from 'react-redux';
-import { actionAddToCart } from '../../actions';
+import { actionAddToCart } from '../../actions/cart';
 import { useState } from 'react';
 
 interface Props {
@@ -35,7 +35,7 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
 
   const handleAddToCart = () => {
     if (product?.slug) dispatch(actionAddToCart(product.slug, quantity));
-    console.log(store.getState());
+    console.log(store.getState().cart);
   };
 
   const handleRemoveQuantity = () => {
@@ -83,7 +83,7 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
                 />
                 <Text>{quantity}</Text>
                 <IconButton
-                  sizE="md"
+                  size="md"
                   aria-label="add"
                   icon={<PlusSquareIcon />}
                   onClick={handleAddQuantity}

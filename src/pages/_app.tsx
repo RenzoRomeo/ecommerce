@@ -2,25 +2,27 @@ import '../styles/globals.css';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
-
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import cartReducer from '../reducers';
+import { PersistGate } from 'redux-persist/integration/react';
+import Navbar from '../components/navbar';
 
-const store = createStore(cartReducer);
+import { store, persistor } from '../storeConfig';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <ChakraProvider>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-        </Head>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ChakraProvider>
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+          </Head>
+          <Navbar />
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </PersistGate>
     </Provider>
   );
 }

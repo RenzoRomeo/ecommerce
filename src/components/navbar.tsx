@@ -1,23 +1,30 @@
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useStore } from 'react-redux';
 import { Box, Stack, Text, IconButton } from '@chakra-ui/react';
 import { PlusSquareIcon } from '@chakra-ui/icons';
 
 import Searchbar from './searchbar';
-import { ProductPair } from '../reducers';
+import { ProductPair } from '../reducers/cart';
 
 const Navbar = () => {
+  const [totalQuantity, setTotalQuantity] = useState<number>(0);
   const store = useStore();
-  const pairs: Array<ProductPair> = store.getState()?.productPairs;
 
-  const getTotalQuantity = (): number => {
-    if (pairs)
-      return pairs.reduce(
+  const setQuantity = useCallback(() => {
+    const pairs: Array<ProductPair> = store.getState().cart?.productPairs;
+    if (pairs) {
+      const sum = pairs.reduce(
         (partial: number, curr: ProductPair) => partial + curr.quantity,
         0
       );
-    return 0;
-  };
+      setTotalQuantity(sum);
+    }
+  }, [store]);
+
+  useEffect(setQuantity, [setQuantity]);
+
+  store.subscribe(setQuantity);
 
   return (
     <Box boxSize="fit-content">
@@ -45,7 +52,7 @@ const Navbar = () => {
 
         <Link href="/cart" passHref>
           <Box bg="whiteAlpha.300" boxSize={10} align="center">
-            {getTotalQuantity() || (
+            {totalQuantity || (
               <IconButton aria-label="cart" icon={<PlusSquareIcon />} />
             )}
           </Box>

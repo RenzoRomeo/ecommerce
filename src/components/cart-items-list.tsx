@@ -1,5 +1,5 @@
 import { Box, Stack } from '@chakra-ui/react';
-import { useStore } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import CartItem from './cart-item';
 
@@ -7,16 +7,15 @@ import { useEffect, useState } from 'react';
 
 import { getProduct } from '../pages/api/product/[slug]';
 
-import type { ProductPair, FullProductPair } from '../reducers';
+import type { ProductPair, FullProductPair } from '../reducers/cart';
 
 const CartItemList = () => {
-  const store = useStore();
-  const storeState = store.getState();
+  const cartState = useSelector((state: any) => state.cart);
   const [products, setProducts] = useState<Array<FullProductPair>>([]);
 
   useEffect(() => {
     const productPairs: Array<ProductPair> =
-      storeState !== undefined ? storeState.productPairs : [];
+      cartState !== undefined ? cartState.productPairs : [];
     const products: Array<FullProductPair> = productPairs.map(
       (pair: ProductPair) => ({
         product: getProduct(pair.slug),
@@ -24,7 +23,7 @@ const CartItemList = () => {
       })
     );
     setProducts(products);
-  }, [storeState]);
+  }, [cartState]);
 
   return (
     <Stack direction="column" spacing={5}>
