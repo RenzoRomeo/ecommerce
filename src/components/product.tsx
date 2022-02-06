@@ -51,7 +51,7 @@ const Product = (props: Props) => {
               boxSize="fit-content"
               borderRadius={10}
             >
-              ${formatter(product.price)}
+              {formatter(product.price)}
             </Box>
           </Box>
         </HoverBox>

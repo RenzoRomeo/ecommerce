@@ -12,7 +12,7 @@ import { MinusIcon, PlusSquareIcon } from '@chakra-ui/icons';
 import Layout from '../../components/layout';
 
 import type { ProductType } from '../../products';
-import { getProduct } from '../api/product/[slug]';
+import { getProduct } from '../../products';
 import type { GetServerSidePropsContext } from 'next';
 
 import { useStore, useDispatch } from 'react-redux';

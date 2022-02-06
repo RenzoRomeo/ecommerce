@@ -1,9 +1,5 @@
-import products from '../../../products';
-
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-export const getProduct = (slug: string | string[] | undefined) =>
-  products.filter((p) => p.slug === slug)[0];
+import { getProduct } from '../../../products';
 
 export default function Handler(req: NextApiRequest, res: NextApiResponse) {
   const { slug } = req.query;

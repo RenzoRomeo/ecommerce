@@ -58,7 +58,7 @@ const CartItem = (props: Props) => {
           </Stack>
         </LinkBox>
       </Link>
-      <Stack direction="row" align="center">
+      <Stack direction="row" align="center" w="8vw">
         <IconButton
           bg="red.800"
           aria-label="remove"
