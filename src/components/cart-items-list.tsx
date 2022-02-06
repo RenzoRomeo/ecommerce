@@ -1,4 +1,4 @@
-import { Box, Stack } from '@chakra-ui/react';
+import { Box, Stack, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
 import CartItem from './cart-item';
@@ -40,7 +40,9 @@ const CartItemList = () => {
       ) : (
         <Box>NO ITEMS</Box>
       )}
-      <Box>TOTAL: ${total}</Box>
+      <Text fontSize="3rem" textAlign="right" w="full">
+        TOTAL: ${total}
+      </Text>
     </Stack>
   );
 };

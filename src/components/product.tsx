@@ -5,6 +5,7 @@ import { Img as Image, LinkBox } from '@chakra-ui/react';
 import HoverBox from './hover-box';
 
 import type { ProductType } from '../products';
+import formatter from '../util/priceFormatter';
 
 interface Props {
   product: ProductType;
@@ -50,7 +51,7 @@ const Product = (props: Props) => {
               boxSize="fit-content"
               borderRadius={10}
             >
-              ${new Intl.NumberFormat('es-ES').format(product.price)}
+              ${formatter(product.price)}
             </Box>
           </Box>
         </HoverBox>

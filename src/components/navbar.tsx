@@ -22,7 +22,13 @@ const Navbar = () => {
     }
   }, [store]);
 
-  useEffect(setQuantity, [setQuantity]);
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) setQuantity();
+    return () => {
+      isMounted = false;
+    };
+  }, [setQuantity]);
 
   store.subscribe(setQuantity);
 
