@@ -19,6 +19,6 @@ export const actionAddToCart = (productSlug: string): ActionType => ({
 });
 
 export const actionRemoveFromCart = (productSlug: string): ActionType => ({
-  type: actions.ADD_TO_CART,
+  type: actions.REMOVE_FROM_CART,
   productSlug,
 });

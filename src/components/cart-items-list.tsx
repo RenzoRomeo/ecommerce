@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 import { useStore } from 'react-redux';
 
 import CartItem from './cart-item';
@@ -23,15 +23,13 @@ const CartItemList = () => {
   }, [storeState]);
 
   return (
-    <Box bg="red">
+    <Stack direction="column" spacing={5}>
       {products.length > 0 ? (
-        products.map((product, i) => (
-          <CartItem key={i} product={product} />
-        ))
+        products.map((product, i) => <CartItem key={i} product={product} />)
       ) : (
         <Box>NO ITEMS</Box>
       )}
-    </Box>
+    </Stack>
   );
 };
 
