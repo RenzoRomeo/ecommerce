@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Box, Stack, Text } from '@chakra-ui/react';
+import { Box, Stack, Text, IconButton } from '@chakra-ui/react';
+import { PlusSquareIcon } from '@chakra-ui/icons';
+
 import Searchbar from './searchbar';
 
 const Navbar = () => (
@@ -25,6 +27,10 @@ const Navbar = () => (
       </Link>
 
       <Searchbar />
+
+      <Link href="/cart" passHref>
+        <IconButton aria-label="cart" icon={<PlusSquareIcon />} />
+      </Link>
     </Stack>
   </Box>
 );
