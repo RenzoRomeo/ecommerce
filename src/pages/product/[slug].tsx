@@ -1,6 +1,13 @@
 import { NextPage } from 'next';
-import { Box, Img as Image, Stack, Text, Button } from '@chakra-ui/react';
-import { PlusSquareIcon } from '@chakra-ui/icons';
+import {
+  Box,
+  Img as Image,
+  Stack,
+  Text,
+  Button,
+  IconButton,
+} from '@chakra-ui/react';
+import { MinusIcon, PlusSquareIcon } from '@chakra-ui/icons';
 
 import Layout from '../../components/layout';
 
@@ -10,6 +17,7 @@ import type { GetServerSidePropsContext } from 'next';
 
 import { useStore, useDispatch } from 'react-redux';
 import { actionAddToCart } from '../../actions';
+import { useState } from 'react';
 
 interface Props {
   product: ProductType;
@@ -20,13 +28,22 @@ interface Params extends GetServerSidePropsContext {
 }
 
 const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
-  const { product } = props;
+  const [quantity, setQuantity] = useState<number>(1);
   const dispatch = useDispatch();
   const store = useStore();
+  const { product } = props;
 
   const handleAddToCart = () => {
-    if (product?.slug) dispatch(actionAddToCart(product.slug));
+    if (product?.slug) dispatch(actionAddToCart(product.slug, quantity));
     console.log(store.getState());
+  };
+
+  const handleRemoveQuantity = () => {
+    if (quantity > 1) setQuantity(quantity - 1);
+  };
+
+  const handleAddQuantity = () => {
+    setQuantity(quantity + 1);
   };
 
   return (
@@ -46,16 +63,33 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
               {product.description}
             </Text>
             <Text fontSize="4rem">${product.price}</Text>
-            <Button
-              leftIcon={<PlusSquareIcon />}
-              boxSize="fit-content"
-              p={5}
-              bg="green.500"
-              fontSize="2rem"
-              onClick={handleAddToCart}
-            >
-              Add to Cart
-            </Button>
+            <Stack direction="row" align="center" spacing={5}>
+              <Button
+                leftIcon={<PlusSquareIcon />}
+                boxSize="fit-content"
+                p={5}
+                bg="green.500"
+                fontSize="2rem"
+                onClick={handleAddToCart}
+              >
+                Add to Cart
+              </Button>
+              <Stack direction="row" align="center">
+                <IconButton
+                  size="md"
+                  aria-label="remove"
+                  icon={<MinusIcon />}
+                  onClick={handleRemoveQuantity}
+                />
+                <Text>{quantity}</Text>
+                <IconButton
+                  sizE="md"
+                  aria-label="add"
+                  icon={<PlusSquareIcon />}
+                  onClick={handleAddQuantity}
+                />
+              </Stack>
+            </Stack>
           </Stack>
         </Stack>
       </Box>

@@ -1,6 +1,7 @@
 export type ActionType = {
   type: string;
   productSlug: string;
+  quantity: number;
 };
 
 type ActionList = {
@@ -13,12 +14,20 @@ export const actions: ActionList = {
   REMOVE_FROM_CART: 'removeFromCart',
 };
 
-export const actionAddToCart = (productSlug: string): ActionType => ({
+export const actionAddToCart = (
+  productSlug: string,
+  quantity: number
+): ActionType => ({
   type: actions.ADD_TO_CART,
   productSlug,
+  quantity,
 });
 
-export const actionRemoveFromCart = (productSlug: string): ActionType => ({
+export const actionRemoveFromCart = (
+  productSlug: string,
+  quantity: number
+): ActionType => ({
   type: actions.REMOVE_FROM_CART,
   productSlug,
+  quantity,
 });

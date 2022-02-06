@@ -3,18 +3,19 @@ import { Box, Text, Stack, Img as Image, IconButton } from '@chakra-ui/react';
 import { MinusIcon } from '@chakra-ui/icons';
 import { actionRemoveFromCart } from '../actions';
 
-import { ProductType } from '../products';
+import type { FullProductPair } from '../reducers';
 
 interface Props {
-  product: ProductType;
+  pair: FullProductPair;
 }
 
 const CartItem = (props: Props) => {
   const dispatch = useDispatch();
-  const { product } = props;
+  const { pair } = props;
+  const { product } = pair;
 
   const handleRemove = () => {
-    if (product?.slug) dispatch(actionRemoveFromCart(product.slug));
+    if (product?.slug) dispatch(actionRemoveFromCart(product.slug, 1));
   };
 
   return (
@@ -33,6 +34,7 @@ const CartItem = (props: Props) => {
           icon={<MinusIcon />}
           onClick={handleRemove}
         />
+        <Text>{pair.quantity}</Text>
       </Stack>
     </Box>
   );
