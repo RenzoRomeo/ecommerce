@@ -50,7 +50,7 @@ const cartReducer: Reducer<StateType | undefined, ActionType> = (
         if (p.slug === action.productSlug) {
           const index = pairs.indexOf(p);
           pairs[index] = { slug: p.slug, quantity: p.quantity - 1 };
-          if (pairs[index].quantity <= 0) pairs.splice(index);
+          if (pairs[index].quantity <= 0) pairs.splice(index, index + 1);
           return { productPairs: pairs };
         }
       }

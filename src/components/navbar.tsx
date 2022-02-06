@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useStore } from 'react-redux';
 import { Box, Stack, Text, IconButton } from '@chakra-ui/react';
-import { PlusSquareIcon } from '@chakra-ui/icons';
+import { BsFillCartFill } from 'react-icons/bs';
 
 import Searchbar from './searchbar';
 import { ProductPair } from '../reducers/cart';
@@ -51,11 +51,20 @@ const Navbar = () => {
         <Searchbar />
 
         <Link href="/cart" passHref>
-          <Box bg="whiteAlpha.300" boxSize={10} align="center">
-            {totalQuantity || (
-              <IconButton aria-label="cart" icon={<PlusSquareIcon />} />
+          <Stack
+            direction="row"
+            bg="whiteAlpha.300"
+            boxSize={10}
+            align="center"
+            borderRadius="5px"
+          >
+            <IconButton aria-label="cart" icon={<BsFillCartFill />} />
+            {totalQuantity && (
+              <Box p={2} borderRadius="full" bg="green.500">
+                {totalQuantity}
+              </Box>
             )}
-          </Box>
+          </Stack>
         </Link>
       </Stack>
     </Box>
