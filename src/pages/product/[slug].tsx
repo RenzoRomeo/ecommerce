@@ -8,6 +8,9 @@ import type { ProductType } from '../../products';
 import { getProduct } from '../api/product/[slug]';
 import type { GetServerSidePropsContext } from 'next';
 
+import { useStore, useDispatch } from 'react-redux';
+import { actionAddToCart } from '../../actions';
+
 interface Props {
   product: ProductType;
 }
@@ -18,6 +21,13 @@ interface Params extends GetServerSidePropsContext {
 
 const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
   const { product } = props;
+  const dispatch = useDispatch();
+  const store = useStore();
+
+  const handleAddToCart = () => {
+    if (product?.slug) dispatch(actionAddToCart(product.slug));
+    console.log(store.getState());
+  };
 
   return (
     <Layout title={product.title}>
@@ -42,6 +52,7 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
               p={5}
               bg="green.500"
               fontSize="2rem"
+              onClick={handleAddToCart}
             >
               Add to Cart
             </Button>
