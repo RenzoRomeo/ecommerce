@@ -9,7 +9,11 @@ const Searchbar = () => {
     setQuery(e.target.value);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (
+    e:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLInputElement>
+  ) => {
     e.preventDefault();
     console.log(query);
   };
@@ -22,6 +26,7 @@ const Searchbar = () => {
         borderColor="whiteAlpha.600"
         placeholder="Search an item"
         onChange={handleChange}
+        onKeyPress={(e) => e.key === 'Enter' && handleClick(e)}
       />
       <IconButton
         aria-label="search"
