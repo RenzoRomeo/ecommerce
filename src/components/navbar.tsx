@@ -44,7 +44,9 @@ const Navbar = () => {
       >
         <Link href="/" passHref>
           <Box cursor="pointer" p={2}>
-            <Text fontSize={25}>ECOMMERCE</Text>
+            <Text fontSize={25} color="white">
+              ECOMMERCE
+            </Text>
           </Box>
         </Link>
 

@@ -11,6 +11,7 @@ import type { ProductPair, FullProductPair } from '../reducers/cart';
 
 const CartItemList = () => {
   const cartState = useSelector((state: any) => state.cart);
+  const [total, setTotal] = useState<number>(0);
   const [products, setProducts] = useState<Array<FullProductPair>>([]);
 
   useEffect(() => {
@@ -23,6 +24,13 @@ const CartItemList = () => {
       })
     );
     setProducts(products);
+
+    const total: number = products.reduce(
+      (partial: number, product: FullProductPair) =>
+        partial + product.product.price * product.quantity,
+      0
+    );
+    setTotal(total);
   }, [cartState]);
 
   return (
@@ -32,6 +40,7 @@ const CartItemList = () => {
       ) : (
         <Box>NO ITEMS</Box>
       )}
+      <Box>TOTAL: ${total}</Box>
     </Stack>
   );
 };
