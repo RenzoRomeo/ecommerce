@@ -1,11 +1,11 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
-
-import CartItem from './cart-item';
-
 import { useEffect, useState } from 'react';
 
+import CartItem from './cart-item';
 import { getProduct } from '../util/products';
+
+import formatter from '../util/priceFormatter';
 
 import type { ProductPair, FullProductPair } from '../reducers/cart';
 
@@ -41,7 +41,7 @@ const CartItemList = () => {
         <Box>NO ITEMS</Box>
       )}
       <Text fontSize="3rem" textAlign="right" w="full">
-        TOTAL: ${total}
+        TOTAL: {formatter(total)}
       </Text>
     </Stack>
   );
