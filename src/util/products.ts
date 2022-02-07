@@ -209,4 +209,4 @@ export const getProductsResult = (query: string): Array<ProductType> => {
   );
 };
 
-export default products;
+export const getAllProducts = () => products;

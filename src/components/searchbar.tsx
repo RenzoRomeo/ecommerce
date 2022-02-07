@@ -54,7 +54,7 @@ const Searchbar = () => {
         w="20vw"
         borderWidth={2}
         borderColor="whiteAlpha.600"
-        placeholder="Search an item"
+        placeholder="Search for an item"
         onChange={handleChange}
       />
 
