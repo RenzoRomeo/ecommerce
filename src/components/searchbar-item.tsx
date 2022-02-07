@@ -4,14 +4,15 @@ import { ProductType } from '../products';
 
 interface Props {
   product: ProductType;
+  onClick: () => void;
 }
 
 const SearchbarItem = (props: Props) => {
-  const { product } = props;
+  const { product, onClick } = props;
 
   return (
     <Link href={`/product/${product.slug}`} passHref>
-      <LinkBox>
+      <LinkBox onClick={onClick}>
         <Stack
           align="center"
           boxSize="fit-content"

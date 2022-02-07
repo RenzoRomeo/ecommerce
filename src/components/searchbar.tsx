@@ -1,17 +1,53 @@
 import { Stack, Input } from '@chakra-ui/react';
-import { useState } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { getProductsResult, ProductType } from '../products';
 import SearchbarItem from './searchbar-item';
 
 const Searchbar = () => {
   const [results, setResults] = useState<Array<ProductType>>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const searchRef = useRef<HTMLInputElement | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setResults(getProductsResult(e.target.value));
   };
 
+  const closeSearch = useCallback(
+    (e) => {
+      if (searchRef.current && isOpen && !searchRef.current.contains(e.target))
+        setIsOpen(false);
+    },
+    [isOpen]
+  );
+  
+  useEffect(() => {
+    document.addEventListener('mousedown', closeSearch);
+    return () => {
+      document.removeEventListener('mousedown', closeSearch);
+    };
+  }, [closeSearch]);
+
+  const openSearch = useCallback(
+    (e) => {
+      if (searchRef.current && !isOpen && searchRef.current.contains(e.target))
+        setIsOpen(true);
+    },
+    [isOpen]
+  );
+
+  useEffect(() => {
+    document.addEventListener('mousedown', openSearch);
+    return () => {
+      document.removeEventListener('mousedown', openSearch);
+    };
+  }, [openSearch]);
+
+  useEffect(() => {
+    setIsOpen(results.length > 0);
+  }, [results]);
+
   return (
-    <Stack direction="column">
+    <Stack direction="column" ref={searchRef}>
       <Input
         color="white"
         w="20vw"
@@ -23,7 +59,7 @@ const Searchbar = () => {
 
       <Stack
         direction="column"
-        display={results.length ? 'block' : 'none'}
+        display={isOpen && results.length ? 'block' : 'none'}
         position="fixed"
         top="4vw"
         maxW="20vw"
@@ -33,7 +69,11 @@ const Searchbar = () => {
         bg="black"
       >
         {results.map((product) => (
-          <SearchbarItem key={product.title} product={product} />
+          <SearchbarItem
+            key={product.title}
+            product={product}
+            onClick={() => setIsOpen(false)}
+          />
         ))}
       </Stack>
     </Stack>
