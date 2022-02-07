@@ -52,7 +52,6 @@ const CartItem = (props: Props) => {
               textOverflow="ellipsis"
               noOfLines={{ base: 2, md: 1 }}
               w="35vw"
-              bg="red"
             >
               {product.title}
             </Text>
