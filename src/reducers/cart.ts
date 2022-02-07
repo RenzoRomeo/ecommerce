@@ -2,7 +2,7 @@ import { actions } from '../actions/cart';
 import type { ActionType } from '../actions/cart';
 import type { Reducer } from 'redux';
 
-import type { ProductType } from '../products';
+import type { ProductType } from '../util/products';
 
 export type ProductPair = {
   slug: string;

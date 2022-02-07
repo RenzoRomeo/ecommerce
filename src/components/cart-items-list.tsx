@@ -5,7 +5,7 @@ import CartItem from './cart-item';
 
 import { useEffect, useState } from 'react';
 
-import { getProduct } from '../products';
+import { getProduct } from '../util/products';
 
 import type { ProductPair, FullProductPair } from '../reducers/cart';
 

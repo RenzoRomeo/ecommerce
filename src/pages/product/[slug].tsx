@@ -11,13 +11,13 @@ import { MinusIcon, PlusSquareIcon } from '@chakra-ui/icons';
 
 import Layout from '../../components/layout';
 
-import type { ProductType } from '../../products';
-import { getProduct } from '../../products';
+import type { ProductType } from '../../util/products';
+import { getProduct } from '../../util/products';
 import type { GetServerSidePropsContext } from 'next';
 
 import { useDispatch } from 'react-redux';
 import { actionAddToCart } from '../../actions/cart';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Props {
   product: ProductType;
@@ -43,6 +43,10 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
   const handleAddQuantity = () => {
     setQuantity(quantity + 1);
   };
+
+  useEffect(() => {
+    setQuantity(1);
+  }, [product])
 
   return (
     <Layout title={product.title}>

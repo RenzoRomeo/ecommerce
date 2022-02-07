@@ -1,7 +1,7 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-import type { ProductType } from '../products';
+import type { ProductType } from '../util/products';
 
 import Product from './product';
 

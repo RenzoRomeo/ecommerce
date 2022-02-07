@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getProduct } from '../../../products';
+import { getProduct } from '../../../util/products';
 
 export default function Handler(req: NextApiRequest, res: NextApiResponse) {
   const { slug } = req.query;

@@ -4,7 +4,7 @@ import { Img as Image, LinkBox } from '@chakra-ui/react';
 
 import HoverBox from './hover-box';
 
-import type { ProductType } from '../products';
+import type { ProductType } from '../util/products';
 import formatter from '../util/priceFormatter';
 
 interface Props {
