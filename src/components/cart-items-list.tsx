@@ -32,13 +32,13 @@ const CartItemList = () => {
   }, [cartState]);
 
   return (
-    <Stack direction="column" spacing={5}>
+    <Stack direction="column" spacing={5} mx={{ base: '-10vw', md: 0 }}>
       {products.length > 0 ? (
         products.map((product, i) => <CartItem key={i} pair={product} />)
       ) : (
         <Box>NO ITEMS</Box>
       )}
-      <Text fontSize="3rem" textAlign="right" w="full">
+      <Text fontSize={{ base: '1.5rem', md: '3rem' }} textAlign="right" w="full">
         TOTAL: {formatter(total)}
       </Text>
     </Stack>

@@ -40,25 +40,30 @@ const CartItem = (props: Props) => {
     >
       <Link href={`/product/${product.slug}`} passHref>
         <LinkBox boxSize="fit-content" cursor="pointer">
-          <Stack direction="row" align="center" spacing={10}>
+          <Stack direction="row" align="center" spacing={{ base: 5, md: 10 }}>
             <Image
               src={product.image}
               alt={product.title}
-              boxSize="75px"
+              boxSize={{ base: '15vw', md: '5vw' }}
               borderRadius="10px"
             />
             <Text
-              fontSize="2rem"
+              fontSize={{ base: '1rem', md: '2rem' }}
               textOverflow="ellipsis"
-              noOfLines={1}
-              maxW="container.md"
+              noOfLines={{ base: 2, md: 1 }}
+              w="35vw"
+              bg="red"
             >
               {product.title}
             </Text>
           </Stack>
         </LinkBox>
       </Link>
-      <Stack direction="row" align="center" w="8vw">
+      <Stack
+        direction={{ base: 'column', md: 'row' }}
+        align="center"
+        w={{ base: '50vw', md: '8vw' }}
+      >
         <IconButton
           bg="red.800"
           aria-label="remove"

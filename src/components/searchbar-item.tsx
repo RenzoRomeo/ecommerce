@@ -25,8 +25,14 @@ const SearchbarItem = (props: Props) => {
           w="100%"
           cursor="pointer"
         >
-          <Image src={product.image} alt={product.title} w="3vw" />
-          <Text fontSize="1.2rem">{product.title}</Text>
+          <Image
+            src={product.image}
+            alt={product.title}
+            w={{ base: '10vw', md: '3vw' }}
+          />
+          <Text fontSize="1rem" noOfLines={2}>
+            {product.title}
+          </Text>
         </Stack>
       </LinkBox>
     </Link>

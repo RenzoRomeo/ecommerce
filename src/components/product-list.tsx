@@ -47,10 +47,10 @@ const ProductList = () => {
       align="center"
       spacing="5vh"
     >
-      <Stack direction="row">
+      <Stack direction={{ base: 'column', md: 'row' }} spacing={5}>
         <Input
           color="white"
-          w="20vw"
+          w={{ base: '100%', md: '20vw' }}
           borderWidth={2}
           borderColor="whiteAlpha.600"
           placeholder="Search for an item"

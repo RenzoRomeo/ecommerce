@@ -49,12 +49,12 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
 
   return (
     <Layout title={product.title}>
-      <Box mx="20vw" p={10}>
+      <Box mx={{ base: '5vw', md: '20vw' }} p={10}>
         <Stack direction={{ base: 'column', md: 'row' }} spacing={10}>
           <Image
             src={product.image}
             alt={product.title}
-            w="15vw"
+            w={{ base: '60vw', md: '15vw' }}
             m={5}
             borderRadius="20px"
           />
@@ -63,8 +63,14 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
             <Text fontSize="1rem" color="gray.500">
               {product.description}
             </Text>
-            <Text fontSize="4rem">${product.price}</Text>
-            <Stack direction="row" align="center" spacing={10}>
+            <Text fontSize={{ base: '2rem', md: '4rem' }}>
+              ${product.price}
+            </Text>
+            <Stack
+              direction={{ base: 'column', md: 'row' }}
+              align="center"
+              spacing={10}
+            >
               <Button
                 leftIcon={<BsCartPlus />}
                 boxSize="fit-content"

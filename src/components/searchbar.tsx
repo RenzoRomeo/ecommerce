@@ -20,7 +20,7 @@ const Searchbar = () => {
     },
     [isOpen]
   );
-  
+
   useEffect(() => {
     document.addEventListener('mousedown', closeSearch);
     return () => {
@@ -51,7 +51,7 @@ const Searchbar = () => {
     <Stack direction="column" ref={searchRef}>
       <Input
         color="white"
-        w="20vw"
+        w={{ base: '50vw', md: '20vw' }}
         borderWidth={2}
         borderColor="whiteAlpha.600"
         placeholder="Search for an item"
@@ -62,8 +62,8 @@ const Searchbar = () => {
         direction="column"
         display={isOpen && results.length ? 'block' : 'none'}
         position="fixed"
-        top="4vw"
-        maxW="20vw"
+        top={{ base: '15vh', md: '10vh' }}
+        maxW={{ base: '50vw', md: '20vw' }}
         zIndex={2}
         borderRadius="10px"
         p={5}

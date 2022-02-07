@@ -57,24 +57,26 @@ const Navbar = () => {
           </Box>
         </Link>
 
-        <Searchbar />
+        <Stack direction="row">
+          <Searchbar />
 
-        <Link href="/cart" passHref>
-          <Stack
-            direction="row"
-            bg="whiteAlpha.300"
-            boxSize={10}
-            align="center"
-            borderRadius="5px"
-          >
-            <IconButton aria-label="cart" icon={<BsFillCartFill />} />
-            {totalQuantity && (
-              <Box p={2} borderRadius="full" bg="green.500">
-                {totalQuantity}
-              </Box>
-            )}
-          </Stack>
-        </Link>
+          <Link href="/cart" passHref>
+            <Stack
+              direction="row"
+              bg="whiteAlpha.300"
+              boxSize={10}
+              align="center"
+              borderRadius="5px"
+            >
+              <IconButton aria-label="cart" icon={<BsFillCartFill />} />
+              {totalQuantity && (
+                <Box p={2} borderRadius="full" bg="green.500">
+                  {totalQuantity}
+                </Box>
+              )}
+            </Stack>
+          </Link>
+        </Stack>
       </Stack>
     </Box>
   );
