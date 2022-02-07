@@ -70,7 +70,7 @@ const ProductList = () => {
         </Menu>
       </Stack>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={5} p={5}>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={5} p={5}>
         {products.map((product) => (
           <Product key={product.title} product={product} />
         ))}
