@@ -23,6 +23,7 @@ const Product = (props: Props) => {
           borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
+          h="full"
         >
           <Image src={product.image} alt={product.title} />
 

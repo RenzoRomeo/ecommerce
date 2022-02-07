@@ -1,17 +1,42 @@
-import { Stack, SimpleGrid, Input } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import {
+  Stack,
+  SimpleGrid,
+  Input,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button,
+} from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
 
-import { getAllProducts, ProductType } from '../util/products';
+import {
+  getAllProducts,
+  getCategories,
+  getProductsByCategory,
+  ProductType,
+} from '../util/products';
 import { getProductsResult } from '../util/products';
 import Product from './product';
 
 const ProductList = () => {
-  const [products, setProducts] = useState<Array<ProductType>>(getAllProducts());
+  const [products, setProducts] = useState<Array<ProductType>>(
+    getAllProducts()
+  );
+  const [category, setCategory] = useState<string>('All Products');
+
+  const categories: Array<string> = getCategories();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value !== '') setProducts(getProductsResult(e.target.value));
-    else setProducts(getAllProducts());
+    if (e.target.value !== '')
+      setProducts(getProductsResult(e.target.value, category));
+    else setProducts(getProductsByCategory(category));
   };
+
+  useEffect(() => {
+    setProducts(getProductsByCategory(category));
+  }, [category]);
 
   return (
     <Stack
@@ -22,16 +47,30 @@ const ProductList = () => {
       align="center"
       spacing="5vh"
     >
-      <Input
-        color="white"
-        w="20vw"
-        borderWidth={2}
-        borderColor="whiteAlpha.600"
-        placeholder="Search for an item"
-        onChange={handleChange}
-      />
+      <Stack direction="row">
+        <Input
+          color="white"
+          w="20vw"
+          borderWidth={2}
+          borderColor="whiteAlpha.600"
+          placeholder="Search for an item"
+          onChange={handleChange}
+        />
+        <Menu>
+          <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            {category}
+          </MenuButton>
+          <MenuList>
+            {categories.map((category) => (
+              <MenuItem key={category} onClick={() => setCategory(category)}>
+                {category}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu>
+      </Stack>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={5} p={5}>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 5 }} spacing={5} p={5}>
         {products.map((product) => (
           <Product key={product.title} product={product} />
         ))}

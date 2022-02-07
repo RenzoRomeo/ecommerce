@@ -10,6 +10,9 @@ export type ProductType = {
   slug?: string;
 };
 
+const title = (text: string) =>
+  text.toLowerCase().replace(/(?:^|\s)\S/g, (s) => s.toUpperCase());
+
 const products: Array<ProductType> = [
   {
     id: 1,
@@ -197,16 +200,38 @@ const products: Array<ProductType> = [
     category: "women's clothing",
     image: 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
   },
-].map((product) => ({ ...product, slug: slugify(product.title) }));
+].map((product) => ({
+  ...product,
+  slug: slugify(product.title),
+  category: title(product.category),
+}));
 
 export const getProduct = (slug: string | string[] | undefined) =>
   products.filter((p) => p.slug === slug)[0];
 
-export const getProductsResult = (query: string): Array<ProductType> => {
+export const getProductsResult = (
+  query: string,
+  category: string = 'All Products'
+): Array<ProductType> => {
   if (query.trim() === '') return [];
-  return products.filter((product) =>
-    product.title.toLowerCase().includes(query.toLowerCase())
-  );
+  return category === 'All Products'
+    ? products
+    : products.filter(
+        (product) =>
+          product.title.toLowerCase().includes(query.toLowerCase()) &&
+          product.category === category
+      );
+};
+
+export const getCategories = () => {
+  const categories = new Set(products.map((product) => product.category));
+  return [...categories, 'All Products'];
+};
+
+export const getProductsByCategory = (category: string) => {
+  return category === 'All Products'
+    ? products
+    : products.filter((product) => product.category === category);
 };
 
 export const getAllProducts = () => products;
