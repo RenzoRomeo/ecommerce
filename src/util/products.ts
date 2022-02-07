@@ -214,8 +214,11 @@ export const getProductsResult = (
   category: string = 'All Products'
 ): Array<ProductType> => {
   if (query.trim() === '') return [];
+
   return category === 'All Products'
-    ? products
+    ? products.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase())
+      )
     : products.filter(
         (product) =>
           product.title.toLowerCase().includes(query.toLowerCase()) &&
