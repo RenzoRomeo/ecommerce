@@ -1,4 +1,7 @@
 import { NextPage } from 'next';
+import type { GetServerSidePropsContext } from 'next';
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Img as Image,
@@ -8,16 +11,12 @@ import {
   IconButton,
 } from '@chakra-ui/react';
 import { MinusIcon, PlusSquareIcon } from '@chakra-ui/icons';
+import { BsCartPlus } from 'react-icons/bs';
 
 import Layout from '../../components/layout';
-
 import type { ProductType } from '../../util/products';
 import { getProduct } from '../../util/products';
-import type { GetServerSidePropsContext } from 'next';
-
-import { useDispatch } from 'react-redux';
 import { actionAddToCart } from '../../actions/cart';
-import { useState, useEffect } from 'react';
 
 interface Props {
   product: ProductType;
@@ -46,7 +45,7 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     setQuantity(1);
-  }, [product])
+  }, [product]);
 
   return (
     <Layout title={product.title}>
@@ -65,9 +64,9 @@ const ProductPage: NextPage | React.FC<Props> = (props: Props) => {
               {product.description}
             </Text>
             <Text fontSize="4rem">${product.price}</Text>
-            <Stack direction="row" align="center" spacing={5}>
+            <Stack direction="row" align="center" spacing={10}>
               <Button
-                leftIcon={<PlusSquareIcon />}
+                leftIcon={<BsCartPlus />}
                 boxSize="fit-content"
                 p={5}
                 bg="green.500"

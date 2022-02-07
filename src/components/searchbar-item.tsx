@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Text, Stack, Img as Image, LinkBox } from '@chakra-ui/react';
+
 import { ProductType } from '../util/products';
 
 interface Props {

@@ -1,5 +1,6 @@
 import { Stack, Input } from '@chakra-ui/react';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+
 import { getProductsResult, ProductType } from '../util/products';
 import SearchbarItem from './searchbar-item';
 

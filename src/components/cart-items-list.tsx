@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 
 import CartItem from './cart-item';
 import { getProduct } from '../util/products';
-
 import formatter from '../util/priceFormatter';
-
 import type { ProductPair, FullProductPair } from '../reducers/cart';
 
 const CartItemList = () => {
