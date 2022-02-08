@@ -9,7 +9,7 @@ Simple Ecommerce site built with Next.js.
 - React
 - Redux
 
-# TODO:
+## TODO:
 
 - Add theme toggle button.
 - Make light theme prettier.
