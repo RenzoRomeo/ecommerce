@@ -1,10 +1,15 @@
-## Ecommerce Site
+# Ecommerce Site
 
 Simple Ecommerce site built with Next.js.
 
-# Tech Stack
+## Tech Stack
 
 - Next.js
 - Typescript
 - React
 - Redux
+
+# TODO:
+
+- Add theme toggle button.
+- Make light theme prettier.
