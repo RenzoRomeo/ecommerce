@@ -25,7 +25,13 @@ const Product = (props: Props) => {
           overflow="hidden"
           h="full"
         >
-          <Image src={product.image} alt={product.title} />
+          <Image
+            maxHeight={128}
+            objectFit="cover"
+            width="full"
+            src={product.image}
+            alt={product.title}
+          />
 
           <Box p="6">
             <Box display="flex" alignItems="baseline">
